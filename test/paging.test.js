@@ -1,4 +1,4 @@
-const getPagingInfo = require('../lib/paging_info');
+const getPagingInfo = require('../lib/paging');
 
 test('get default paging info if no args', () => {
   const emptyArgs = {};
