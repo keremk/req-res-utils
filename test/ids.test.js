@@ -24,10 +24,10 @@ test('get ids list if ids parameter with one id is supplied', () => {
   expect(getIds(args)).toEqual(["12"]);  
 });
 
-test('get an exception if there are more than 10 ids', () => {
+test('get an exception if there are more than maxAllowed ids', () => {
   const args = {
     "ids": "1,2,3,4,5,6,7,8,9,10,11"
   };
 
-  expect(() => getIds(args)).toThrow("Max 10 items can be requested, received 11 instead");  
+  expect(() => getIds(args, 10)).toThrow("Max 10 items can be requested, received 11 instead");  
 });
