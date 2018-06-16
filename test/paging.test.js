@@ -6,7 +6,8 @@ test('get default paging info if no args', () => {
   expect(paging.getPagingInfo(emptyArgs, 10)).toEqual(
     {
       "offset": 0,
-      "limit": 10
+      "limit": 10,
+      "total": 10
     }
   );  
 });
@@ -20,7 +21,8 @@ test('get correct offset and limit within valid range', () => {
   expect(paging.getPagingInfo(args, 10)).toEqual(
     {
       "offset": 0,
-      "limit": 5
+      "limit": 5,
+      "total": 10
     }
   );  
 });
@@ -34,7 +36,8 @@ test('get correct offset and limit where limit is capped to total', () => {
   expect(paging.getPagingInfo(args, 10)).toEqual(
     {
       "offset": 0,
-      "limit": 10
+      "limit": 10, 
+      "total": 10
     }
   );  
 });
@@ -48,7 +51,8 @@ test('get correct offset and limit when offset is greater than total', () => {
   expect(paging.getPagingInfo(args, 10)).toEqual(
     {
       "offset": 9,
-      "limit": 1
+      "limit": 1,
+      "total": 10
     }
   );  
 });
@@ -62,7 +66,8 @@ test('get correct offset and limit when offset is smaller than 0', () => {
   expect(paging.getPagingInfo(args, 10)).toEqual(
     {
       "offset": 0,
-      "limit": 5
+      "limit": 5,
+      "total": 10
     }
   );  
 });
@@ -76,7 +81,8 @@ test('get correct offset and limit when limit is smaller than 0', () => {
   expect(paging.getPagingInfo(args, 10)).toEqual(
     {
       "offset": 0,
-      "limit": 10
+      "limit": 10,
+      "total": 10
     }
   );  
 });
@@ -91,8 +97,8 @@ test('get paged items', () => {
 
   expect(paging.getPagedItems(args, items)).toEqual(
     {
-      "pageInfo": {"limit": 5, "offset": 0}, 
-      "pagedItems": [1, 2, 3, 4, 5]
+      "metadata": {"limit": 5, "offset": 0, "total": items.length }, 
+      "data": [1, 2, 3, 4, 5]
     }
   );
 });
@@ -107,8 +113,8 @@ test('get paged items with non-zero offset', () => {
 
   expect(paging.getPagedItems(args, items)).toEqual(
     {
-      "pageInfo": {"limit": 2, "offset": 2}, 
-      "pagedItems": [3, 4]
+      "metadata": {"limit": 2, "offset": 2, "total": items.length}, 
+      "data": [3, 4]
     }
   );
 });
