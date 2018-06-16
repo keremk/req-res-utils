@@ -89,7 +89,7 @@ test('get paged items', () => {
 
   const items = [1, 2, 3, 4, 5, 6];
 
-  expect(paging.getPagedResults(args, items.length, items)).toEqual(
+  expect(paging.getPagedItems(args, items)).toEqual(
     {
       "pageInfo": {"limit": 5, "offset": 0}, 
       "pagedItems": [1, 2, 3, 4, 5]
@@ -105,7 +105,7 @@ test('get paged items with non-zero offset', () => {
 
   const items = [1, 2, 3, 4, 5, 6];
 
-  expect(paging.getPagedResults(args, items.length, items)).toEqual(
+  expect(paging.getPagedItems(args, items)).toEqual(
     {
       "pageInfo": {"limit": 2, "offset": 2}, 
       "pagedItems": [3, 4]
