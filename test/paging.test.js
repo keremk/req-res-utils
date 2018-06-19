@@ -3,11 +3,11 @@ const paging= require('../lib/paging');
 test('get default paging info if no args', () => {
   const emptyArgs = {};
 
-  expect(paging.getPagingInfo(emptyArgs, 10)).toEqual(
+  expect(paging.getPagingInfo(emptyArgs, 150)).toEqual(
     {
       "offset": 0,
-      "limit": 10,
-      "total": 10
+      "limit": 100,
+      "total": 150
     }
   );  
 });
@@ -83,6 +83,21 @@ test('get correct offset and limit when limit is smaller than 0', () => {
       "offset": 0,
       "limit": 10,
       "total": 10
+    }
+  );  
+});
+
+test('get correct offset and limit when limit is smaller than 0 and total is greater than DEFAULTLIMIT', () => {
+  const args = {
+    "offset": "0",
+    "limit": "-5"
+  };
+
+  expect(paging.getPagingInfo(args, 150)).toEqual(
+    {
+      "offset": 0,
+      "limit": 100,
+      "total": 150
     }
   );  
 });

@@ -1,6 +1,6 @@
 {
   "name": "req-res-utils",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Utils for parsing and formatting requests and responses.",
   "main": "index.js",
   "scripts": {
